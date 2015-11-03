@@ -17,6 +17,12 @@
 # Setup
 
 !SUB
+## Prerequisites
+[Docker](https://docs.docker.com/installation) <small>(v1.8.0+)</small>
+
+[Go Docker image](https://hub.docker.com/r/library/golang) <small>(golang:1.5+)</small>
+
+!SUB
 ## Get the files
 
 [github.com/nautsio/workshop-docker-plugins](https://github.com/nautsio/workshop-docker-plugins)
@@ -75,3 +81,18 @@ Plugins are discovered by name and a simple check for a file with the same name 
 Docker always searches for a UNIX domain socket first in `/run/docker/plugins`. If the socket is not found it will continue to check for `.spec` or `.json` files in `/etc/docker/plugins` and `/usr/lib/docker/plugins`.
 
 Fore more details see [Docker docs - Plugin discovery](https://docs.docker.com/extend/plugin_api/#plugin-discovery)
+
+!SUB
+## Caveats
+Plugins have to be started before the Docker daemon or there will be a slight delay before the docker daemon is started because the Docker daemon tries to connect to the plugin while starting. Docker will output the following in `docker.log`
+```
+Unable to connect to plugin: 127.0.0.1:8080, retrying in 1s
+Unable to connect to plugin: 127.0.0.1:8080, retrying in 2s
+Unable to connect to plugin: 127.0.0.1:8080, retrying in 4s
+Unable to connect to plugin: 127.0.0.1:8080, retrying in 8s
+```
+
+!SUB
+> Attempts to call a method on a plugin are retried with an exponential backoff for up to 30 seconds. This may help when packaging plugins as containers, since it gives plugin containers a chance to start up before failing any user containers which depend on them.
+
+[Docker plugin API docs](https://github.com/docker/docker/blob/master/docs/extend/plugin_api.md#plugin-retries)
