@@ -39,7 +39,7 @@ Or download the files directly
 
 !SUB
 ## Docker plugins
-As of version [1.7.0](https://blog.docker.com/2015/06/announcing-docker-1-7-multi-host-networking-plugins-and-orchestration-updates/) Docker has experimental support for plugins for [networking](https://github.com/docker/libnetwork/blob/master/docs/remote.md) and [volumes](https://docs.docker.com/extend/plugins_volume/)(storage).
+As of version [1.7.0](https://blog.docker.com/2015/06/announcing-docker-1-7-multi-host-networking-plugins-and-orchestration-updates/) Docker has experimental support for plugins for [networking](https://docs.docker.com/engine/extend/plugins_network/) and [volumes](https://docs.docker.com/extend/plugins_volume/)(storage).
 As of Docker [1.8.0](https://blog.docker.com/2015/08/docker-1-8-content-trust-toolbox-registry-orchestration/) the volumes plugin has been promoted to the stable release. The network plugin will be promoted to the stable release with Docker 1.9.0
 
 !SUB
