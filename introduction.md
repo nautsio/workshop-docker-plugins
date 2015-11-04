@@ -65,7 +65,7 @@ A docker plugin has to either expose a UNIX domain socket on the Docker host or 
 ## How to use a Docker plugin?
 For volume plugins simply use:
 ```
-docker run --volume-driver=<pluginname> ...
+docker run -v <volumename>:<mountpoint> --volume-driver=<pluginname> ...
 ```
 
 For network plugins simply create the network first and then use it
